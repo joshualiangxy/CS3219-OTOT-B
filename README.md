@@ -31,7 +31,8 @@
 1. Add a `.env` file at the root of the project directory.
 2. Within the `.env` file, enter the environment variables for
 ```bash
-MONGODB_HOST      # hostname and port number, eg. "localhost:27017" without quotes
+MONGODB_HOST
+MONGODB_PORT
 MONGODB_DATABASE  # name of database used in mongo
 MONGODB_USERNAME  # depends on your authentication, might not be needed
 MONGODB_PASSWORD  # depends on your authentication, might not be needed

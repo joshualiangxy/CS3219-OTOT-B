@@ -5,6 +5,7 @@ import { format } from 'url';
 
 export interface MongoDBConfig {
   host: string;
+  port: string;
   database: string;
   username: string;
   password: string;
@@ -26,6 +27,7 @@ export default class MongooseConfigService implements MongooseOptionsFactory {
   public createMongooseOptions(): MongooseModuleOptions {
     const {
       host,
+      port,
       username,
       password,
       database: dbName
@@ -34,7 +36,7 @@ export default class MongooseConfigService implements MongooseOptionsFactory {
       uri: format({
         protocol: 'mongodb',
         slashes: true,
-        host
+        host: `${host}:${port}`
       }),
       dbName
     };
