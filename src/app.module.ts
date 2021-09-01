@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AppService } from './app.service';
 import config from './config';
 import MongooseConfigService from './config/mongoose.config';
 import NotesModule from './notes/notes.module';
@@ -11,11 +10,11 @@ import NotesModule from './notes/notes.module';
     ConfigModule.forRoot({ load: [config] }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useClass: MongooseConfigService
+      useClass: MongooseConfigService,
     }),
-    NotesModule
+    NotesModule,
   ],
   controllers: [],
-  providers: [AppService, MongooseConfigService]
+  providers: [MongooseConfigService],
 })
-export class AppModule { }
+export class AppModule {}

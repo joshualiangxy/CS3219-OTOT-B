@@ -1,14 +1,14 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Error, Model } from "mongoose";
-import { CreateNoteDto, UpdateNoteDto } from "./notes.dto";
-import { Note, NoteDocument } from "./notes.schema";
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CreateNoteDto, UpdateNoteDto } from './notes.dto';
+import { Note, NoteDocument } from './notes.schema';
 
 @Injectable()
 export default class NotesRepository {
   public constructor(
-    @InjectModel(Note.name) private modelNote: Model<NoteDocument>
-  ) { }
+    @InjectModel(Note.name) private modelNote: Model<NoteDocument>,
+  ) {}
 
   public async findAll(): Promise<Note[]> {
     return this.modelNote.find();
@@ -21,11 +21,7 @@ export default class NotesRepository {
   public async findOneAndUpdate(updateNoteDto: UpdateNoteDto): Promise<Note> {
     const { _id, ...update } = updateNoteDto;
 
-    return this.modelNote.findOneAndUpdate(
-      { _id },
-      update,
-      { new: true }
-    );
+    return this.modelNote.findOneAndUpdate({ _id }, update, { new: true });
   }
 
   public async create(createNoteDto: CreateNoteDto): Promise<void> {

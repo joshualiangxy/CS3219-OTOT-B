@@ -1,6 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { ConfigService } from "@nestjs/config";
-import { MongooseModuleOptions, MongooseOptionsFactory } from "@nestjs/mongoose";
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import {
+  MongooseModuleOptions,
+  MongooseOptionsFactory,
+} from '@nestjs/mongoose';
 import { format } from 'url';
 
 export interface MongoDBConfig {
@@ -17,12 +20,12 @@ interface Options {
   auth?: {
     username: string;
     password: string;
-  },
+  };
 }
 
 @Injectable()
 export default class MongooseConfigService implements MongooseOptionsFactory {
-  public constructor(private readonly serviceConfig: ConfigService) { }
+  public constructor(private readonly serviceConfig: ConfigService) {}
 
   public createMongooseOptions(): MongooseModuleOptions {
     const {
@@ -30,15 +33,15 @@ export default class MongooseConfigService implements MongooseOptionsFactory {
       port,
       username,
       password,
-      database: dbName
+      database: dbName,
     } = this.serviceConfig.get<MongoDBConfig>('mongodb');
     const options: Options = {
       uri: format({
         protocol: 'mongodb',
         slashes: true,
-        host: `${host}:${port}`
+        host: `${host}:${port}`,
       }),
-      dbName
+      dbName,
     };
 
     if (username) options.auth = { username, password };

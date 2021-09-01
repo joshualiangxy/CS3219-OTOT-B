@@ -6,10 +6,10 @@ import { Note, NoteSchema } from './notes.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Note.name, schema: NoteSchema }])
+    MongooseModule.forFeature([{ name: Note.name, schema: NoteSchema }]),
   ],
   controllers: [NotesController],
   providers: [NotesRepository],
-  exports: [NotesRepository]
+  exports: [NotesRepository],
 })
-export default class NotesModule { }
+export default class NotesModule {}

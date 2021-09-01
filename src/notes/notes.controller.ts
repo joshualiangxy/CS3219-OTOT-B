@@ -1,12 +1,24 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
-import { Error } from 'mongoose';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import isEmpty from 'lodash/isEmpty';
+import isNil from 'lodash/isNil';
+import { Error as MongooseError } from 'mongoose';
 import { CreateNoteDto, UpdateNoteDto } from './notes.dto';
 import NotesRepository from './notes.repository';
 import { Note } from './notes.schema';
 
 @Controller('notes')
 export default class NotesController {
-  public constructor(private readonly repositoryNotes: NotesRepository) { }
+  public constructor(private readonly repositoryNotes: NotesRepository) {}
 
   @Get()
   public async listNotes(): Promise<Note[]> {
@@ -22,7 +34,8 @@ export default class NotesController {
     try {
       return await this.repositoryNotes.findById(id);
     } catch (err) {
-      if (err instanceof Error.CastError) throw new BadRequestException(err);
+      if (err instanceof MongooseError.CastError)
+        throw new BadRequestException(err);
 
       throw err;
     }
@@ -34,7 +47,8 @@ export default class NotesController {
     try {
       await this.repositoryNotes.create(createNoteDto);
     } catch (err) {
-      if (err instanceof Error.ValidationError) throw new BadRequestException(err);
+      if (err instanceof MongooseError.ValidationError)
+        throw new BadRequestException(err);
 
       throw err;
     }
@@ -43,11 +57,16 @@ export default class NotesController {
   @Put()
   public async updateNote(@Body() updateNoteDto: UpdateNoteDto) {
     try {
-      if (!updateNoteDto._id) throw new BadRequestException('_id required for update');
+      const { _id, ...updates } = updateNoteDto;
+
+      if (isNil(_id)) throw new BadRequestException('_id required for update');
+      if (isEmpty(updates))
+        throw new BadRequestException('No update fields specified');
 
       return await this.repositoryNotes.findOneAndUpdate(updateNoteDto);
     } catch (err) {
-      if (err instanceof Error.ValidationError) throw new BadRequestException(err);
+      if (err instanceof MongooseError.ValidationError)
+        throw new BadRequestException(err);
 
       throw err;
     }
@@ -58,7 +77,8 @@ export default class NotesController {
     try {
       return await this.repositoryNotes.findOneAndDelete(id);
     } catch (err) {
-      if (err instanceof Error.CastError) throw new BadRequestException(err);
+      if (err instanceof MongooseError.CastError)
+        throw new BadRequestException(err);
 
       throw err;
     }

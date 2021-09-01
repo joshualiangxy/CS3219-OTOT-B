@@ -1,4 +1,4 @@
-import { MongoDBConfig } from "./mongoose.config";
+import { MongoDBConfig } from './mongoose.config';
 
 interface Config {
   port: number;
@@ -12,8 +12,8 @@ const config = (): Config => ({
     port: process.env.MOGODB_PORT || '27017',
     database: process.env.MONGODB_DATABASE,
     username: process.env.MONGODB_USERNAME,
-    password: process.env.MONGODB_PASSWORD || ''
-  }
+    password: process.env.MONGODB_PASSWORD || '',
+  },
 });
 
 export default config;
