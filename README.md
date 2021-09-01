@@ -35,11 +35,11 @@ $ nvm use
 1. Add a `.env` file at the root of the project directory.
 2. Within the `.env` file, enter the environment variables for
 ```bash
-MONGODB_HOST
-MONGODB_PORT
-MONGODB_DATABASE  # name of database used in mongo
-MONGODB_USERNAME  # depends on your authentication, might not be needed
-MONGODB_PASSWORD  # depends on your authentication, might not be needed
+MONGODB_HOST      # Include port number here if needed ie. 'localhost:27017'.
+MONGODB_PROTOCOL  # Either 'mongodb' or 'mongodb+srv'. Defaults to 'mongodb'.
+MONGODB_DATABASE  # Name of database used in mongo.
+MONGODB_USERNAME  # Depends on your authentication, might not be needed.
+MONGODB_PASSWORD  # Depends on your authentication, might not be needed.
 ```
 
 ## Installation

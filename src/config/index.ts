@@ -9,7 +9,7 @@ const config = (): Config => ({
   port: parseInt(process.env.LISTEN_PORT, 10) || 8080,
   mongodb: {
     host: process.env.MONGODB_HOST || 'localhost',
-    port: process.env.MOGODB_PORT || '27017',
+    protocol: process.env.MONGODB_PROTOCOL || 'mongodb',
     database: process.env.MONGODB_DATABASE,
     username: process.env.MONGODB_USERNAME,
     password: process.env.MONGODB_PASSWORD || '',

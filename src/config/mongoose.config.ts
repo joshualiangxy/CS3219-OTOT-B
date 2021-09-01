@@ -8,7 +8,7 @@ import { format } from 'url';
 
 export interface MongoDBConfig {
   host: string;
-  port: string;
+  protocol: string;
   database: string;
   username: string;
   password: string;
@@ -30,16 +30,16 @@ export default class MongooseConfigService implements MongooseOptionsFactory {
   public createMongooseOptions(): MongooseModuleOptions {
     const {
       host,
-      port,
+      protocol,
       username,
       password,
       database: dbName,
     } = this.serviceConfig.get<MongoDBConfig>('mongodb');
     const options: Options = {
       uri: format({
-        protocol: 'mongodb',
+        protocol,
+        host,
         slashes: true,
-        host: `${host}:${port}`,
       }),
       dbName,
     };
