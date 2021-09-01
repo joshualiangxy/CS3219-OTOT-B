@@ -28,6 +28,10 @@
 
 ## Configurations
 
+1. Run the following command to ensure you are on the correct version of node. Ensure you have node version manager installed.
+```bash
+$ nvm use
+```
 1. Add a `.env` file at the root of the project directory.
 2. Within the `.env` file, enter the environment variables for
 ```bash
