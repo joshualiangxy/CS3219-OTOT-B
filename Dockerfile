@@ -16,6 +16,4 @@ WORKDIR /app
 
 COPY    --from=builder /pkg /app
 
-EXPOSE  8080
-
 CMD ["node", "dist/main.js"]
