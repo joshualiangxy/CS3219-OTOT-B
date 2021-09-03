@@ -35,6 +35,7 @@ $ nvm use
 1. Add a `.env` file at the root of the project directory.
 2. Within the `.env` file, enter the environment variables for
 ```bash
+LISTEN_PORT       # The port used for the app. Defaults to 8080.
 MONGODB_HOST      # Include port number here if needed ie. 'localhost:27017'.
 MONGODB_PROTOCOL  # Either 'mongodb' or 'mongodb+srv'. Defaults to 'mongodb'.
 MONGODB_DATABASE  # Name of database used in mongo.
