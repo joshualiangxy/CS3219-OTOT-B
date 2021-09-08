@@ -14,7 +14,7 @@ const config = (): Config => ({
     protocol: process.env.MONGODB_PROTOCOL || 'mongodb',
     database: process.env.MONGODB_DATABASE,
     username: process.env.MONGODB_USERNAME,
-    password: process.env.MONGODB_PASSWORD,
+    password: process.env.MONGODB_PASSWORD || '',
   },
 });
 
