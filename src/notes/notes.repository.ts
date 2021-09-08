@@ -24,10 +24,10 @@ export default class NotesRepository {
     return this.modelNote.findOneAndUpdate({ _id }, update, { new: true });
   }
 
-  public async create(createNoteDto: CreateNoteDto): Promise<void> {
+  public async create(createNoteDto: CreateNoteDto): Promise<Note> {
     const createdNote: NoteDocument = new this.modelNote(createNoteDto);
 
-    await createdNote.save();
+    return await createdNote.save();
   }
 
   public async findOneAndDelete(id: string): Promise<Note> {

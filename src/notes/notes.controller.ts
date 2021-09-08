@@ -43,9 +43,9 @@ export default class NotesController {
 
   @Post()
   @HttpCode(201)
-  public async createNote(@Body() createNoteDto: CreateNoteDto): Promise<void> {
+  public async createNote(@Body() createNoteDto: CreateNoteDto): Promise<Note> {
     try {
-      await this.repositoryNotes.create(createNoteDto);
+      return await this.repositoryNotes.create(createNoteDto);
     } catch (err) {
       if (err instanceof MongooseError.ValidationError)
         throw new BadRequestException(err);
@@ -62,6 +62,8 @@ export default class NotesController {
       if (isNil(_id)) throw new BadRequestException('_id required for update');
       if (isEmpty(updates))
         throw new BadRequestException('No update fields specified');
+      if (isEmpty(updates.title))
+        throw new BadRequestException('Title required for update');
 
       return await this.repositoryNotes.findOneAndUpdate(updateNoteDto);
     } catch (err) {
