@@ -10,8 +10,8 @@ export interface MongoDBConfig {
   host: string;
   protocol: string;
   database: string;
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
 }
 
 interface Options {
