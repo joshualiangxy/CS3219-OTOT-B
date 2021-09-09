@@ -62,7 +62,7 @@ export default class NotesController {
       if (isNil(_id)) throw new BadRequestException('_id required for update');
       if (isEmpty(updates))
         throw new BadRequestException('No update fields specified');
-      if (isEmpty(updates.title))
+      if (!isNil(updates.title) && isEmpty(updates.title))
         throw new BadRequestException('Title required for update');
 
       return await this.repositoryNotes.findOneAndUpdate(updateNoteDto);

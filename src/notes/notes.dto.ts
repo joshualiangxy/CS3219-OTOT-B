@@ -1,6 +1,6 @@
 export interface CreateNoteDto {
   title: string;
-  comment: string;
+  comment?: string;
 }
 
 export interface UpdateNoteDto {
