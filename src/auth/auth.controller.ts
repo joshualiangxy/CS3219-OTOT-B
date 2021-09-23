@@ -12,10 +12,4 @@ export default class AuthController {
   public async login(@Request() req): Promise<JwtAccessToken> {
     return this.serviceAuth.login(req.user);
   }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  public async getProfile(@Request() req) {
-    return req.user;
-  }
 }

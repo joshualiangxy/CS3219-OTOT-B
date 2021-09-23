@@ -28,8 +28,8 @@ export default class AuthService {
     }
   }
 
-  public async login(user: User): Promise<JwtAccessToken> {
-    const jwtPayload: JwtPayload = { username: user.username, sub: user.userId };
+  public async login({ username, userId, roles }: User): Promise<JwtAccessToken> {
+    const jwtPayload: JwtPayload = { sub: userId, username, roles };
     const accessToken: string = this.serviceJwt.sign(jwtPayload);
 
     return { accessToken };
