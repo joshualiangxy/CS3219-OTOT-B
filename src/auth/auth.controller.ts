@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Request, UseGuards } from "@nestjs/common";
-import AuthService, { JwtAccessToken } from "./auth.service";
-import JwtAuthGuard from "./strategies/jwt.guard";
-import LocalAuthGuard from "./strategies/local.guard";
+import { Controller, Post, Request, UseGuards } from '@nestjs/common';
+import AuthService, { JwtAccessToken } from './auth.service';
+import LocalAuthGuard from './strategies/local.guard';
 
 @Controller('login')
 export default class AuthController {

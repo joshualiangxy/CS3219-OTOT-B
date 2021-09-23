@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
-import { User } from "src/users/users.const";
-import UsersService from "src/users/users.service";
-import { JwtPayload } from "./strategies/jwt.strategy";
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { User } from 'src/users/users.const';
+import UsersService from 'src/users/users.service';
+import { JwtPayload } from './strategies/jwt.strategy';
 
 export interface JwtAccessToken {
   accessToken: string;
@@ -17,7 +17,7 @@ export default class AuthService {
 
   public async validateUser(
     username: string,
-    password: string
+    password: string,
   ): Promise<User | undefined> {
     const user = await this.serviceUsers.findUser(username);
 
@@ -28,7 +28,11 @@ export default class AuthService {
     }
   }
 
-  public async login({ username, userId, roles }: User): Promise<JwtAccessToken> {
+  public async login({
+    username,
+    userId,
+    roles,
+  }: User): Promise<JwtAccessToken> {
     const jwtPayload: JwtPayload = { sub: userId, username, roles };
     const accessToken: string = this.serviceJwt.sign(jwtPayload);
 

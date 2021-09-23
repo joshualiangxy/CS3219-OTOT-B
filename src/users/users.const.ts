@@ -1,4 +1,4 @@
-import Role from "src/auth/roles/role.enum";
+import Role from 'src/auth/roles/role.enum';
 
 export interface User {
   userId: number;
