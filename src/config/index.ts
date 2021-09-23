@@ -4,6 +4,7 @@ interface Config {
   port: number;
   corsOrigin?: string;
   mongodb: MongoDBConfig;
+  jwtSecret: string;
 }
 
 const config = (): Config => ({
@@ -16,6 +17,7 @@ const config = (): Config => ({
     username: process.env.MONGODB_USERNAME,
     password: process.env.MONGODB_PASSWORD || '',
   },
+  jwtSecret: process.env.JWT_SECRET,
 });
 
 export default config;

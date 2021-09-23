@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 import config from './config';
 
 interface NestOptions {
-  cors?: { origin: string; };
+  cors?: { origin: string };
 }
 
 async function bootstrap() {
