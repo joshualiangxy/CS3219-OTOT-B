@@ -14,6 +14,7 @@ MONGODB_PROTOCOL  # Either 'mongodb' or 'mongodb+srv'. Defaults to 'mongodb'.
 MONGODB_DATABASE  # Name of database used in mongo.
 MONGODB_USERNAME  # Depends on your authentication, might not be needed.
 MONGODB_PASSWORD  # Depends on your authentication, might not be needed.
+JWT_SECRET        # Secret used to sign JWT
 ```
 
 ## Installation
